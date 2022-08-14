@@ -1,5 +1,7 @@
 #include <iostream>
 #include <string>
+#include <vector>
+#include "Customer.h"
 #pragma once
 
 // Purpose: 
@@ -9,7 +11,16 @@
 class ECommerce
 {
 public: 
+	// Class Variables
+	std::vector<Customer> custVector;
+
+	// Action Methods
+	void NEWCUST(int inputCustID); 
+	void CUSTS();
+
+	// Other Methods
+	void AddCustVector(Customer newCust);
 	int GenerateCustID();
-	void NEWCUST(int inputCustID);
+	
 };
 
