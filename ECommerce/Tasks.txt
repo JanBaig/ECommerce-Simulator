@@ -1,0 +1,15 @@
+
+TASKS:
+- (CURRENTLY) Basic: actions CUSTS, BOOKS, ORDERS, SHIPPED
+- Intermediate: actions ORDER, SHIP, CUSTORDERS, NEWCUST, CANCEL
+- Advanced: Action ORDERBOOK and class Book functionality
+- Advanced: action ORDERSHOES and class Shoes
+- 3 SORT actions (see code) 
+- BooksByAuthor action implemented
+
+
+EXPLANATIONS:
+- Need to igore the '\n' in cin after hitting enter after 'NEWCUST'. getline() terminates with a '\n'
+  cin >> reads the newline char but does not include it inside the var. getline() on the other hand, does not include it but if found already in stream, terminates 
+
+

@@ -18,13 +18,12 @@ int main()
                 if (userInput == "CUSTS")   eCommerce.CUSTS();
                 if (userInput == "PRODS")   eCommerce.PRODS(); 
                 if (userInput == "BOOKS")   eCommerce.BOOKS();
-                if (userInput == "ORDER")   eCommerce.ORDER(); // implement this later 
+                if (userInput == "ORDER")   eCommerce.ORDER(); 
             }
         } 
         catch (std::runtime_error err) {
             std::cout << "ERROR: " <<  err.what() << std::endl; 
         }
-        
     }
     
     return 0;

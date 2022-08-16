@@ -12,6 +12,7 @@
 class ECommerce
 {
 public: 
+
 	// Class Variables
 	std::vector<Customer> custVector;
 	std::vector<Product> prodVector;
@@ -32,6 +33,8 @@ public:
 	// Helper Methods
 	bool verifyProdID(int prodID);
 	bool verifyCustID(int custID);
+	Product getProd(int prodID);
+	Customer getCust(int custID);
 	
 };
 

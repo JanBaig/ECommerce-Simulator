@@ -3,36 +3,30 @@
 #include "ECommerce.h"
 #include "Customer.h"
 #include "Product.h"
+#include "Book.h"
+
+// Operator Overrides
 
 std::ostream& operator<<(std::ostream& os, const Customer& cust) {
 	os << cust.custName << " " << cust.custID << " " << cust.custAddress << std::endl;
 	return os;
 }
 
-std::ostream& operator<<(std::ostream& os, const Product& prod) {
+std::ostream& operator<<(std::ostream& os, Product& prod) {
 	// If Type 1.. then print CLOTHES, else print this...
-	std::string prodType;
-	os << "ID: " << prod.prodID << " | ";
-	os << "Name: " << prod.name << " | ";
-
-	if (prod.type == 0) {
-		prodType = "BOOKS";
-	} 
-	else if (prod.type == 1) {
-		prodType = "CLOTHS";
-	} 
-	else if (prod.type == 2) {
-		prodType = "TECH";
-	} 
-	else {
-		prodType = "SHOES";
-	}
-
-	os << "Type: " << prodType << " | ";
-	os << "Price: " << prod.price << " | ";
-	os << "Options: " << prod.options << std::endl; 
-	return os;
+	// DELETED COSNT from prod
+	return prod.Print(os);
 }
+
+/*
+std::ostream& operator<<(std::ostream& os, Book& book) {
+	// Reference params allows the original value to be modified and does not create a value
+	// Const Reference params don't allow the value to modified
+	// REMOVED CONST
+	return book.Print(os);
+
+}
+*/
 
 // Actions
 void ECommerce::CUSTS() {
@@ -89,14 +83,16 @@ void ECommerce::ORDER() {
 
 	// Error Handling
 	if (verifyProdID(std::stoi(inputProdID))) {
-		std::cout << "Product ID is Correct." << std::endl;
+		Product orderedProd = getProd(stoi(inputProdID));
+		std::cout << orderedProd << std::endl;
 	}
 	else {
 		throw std::runtime_error("ERROR: Incorrect Product ID.");
 	} 
 
 	if (verifyCustID(std::stoi(inputCustID))) {
-		std::cout << "Customer ID is Correct." << std::endl;
+		Customer orderedCust = getCust(stoi(inputCustID));
+		std::cout << orderedCust << std::endl;
 	}
 	else {
 		throw std::runtime_error("ERROR: Incorrect Customer ID.");
@@ -105,6 +101,7 @@ void ECommerce::ORDER() {
 	// Convert the prodID to an int later on
 
 	// Add to the 'ordered' arraylist for that cust
+	// create a NEW productOrder object and add that to the custs arraylist
 
 
 }
@@ -141,12 +138,12 @@ void ECommerce::AddCustVector(Customer newCust) {
 }  
 
 void ECommerce::IntializeProds() {
-	Product newProd1(GenerateProdID(), "summer dress", Product::Types::CLOTHES, 20.5, "None");
-	Product newProd2(GenerateProdID(), "Nike", Product::Types::SHOES, 30.0, "None");
-	Product newProd3(GenerateProdID(), "Lenovo", Product::Types::TECH, 1250.50, "None");
-	Product newProd4(GenerateProdID(), "CppPrimer", Product::Types::BOOKS, 75.0, "None");
-	Product newProd5(GenerateProdID(), "Elements of Computing Systems", Product::Types::BOOKS, 1250.50, "None");
-	Product newProd6(GenerateProdID(), "iPhone XR", Product::Types::TECH, 1250.50, "None");
+	Product newProd1(GenerateProdID(), "summer dress", Product::Types::CLOTHES, 20.5, 100);
+	Product newProd2(GenerateProdID(), "Nike", Product::Types::SHOES, 30.0, 100);
+	Product newProd3(GenerateProdID(), "Lenovo", Product::Types::TECH, 1250.50, 100);
+	Book newProd4(GenerateProdID(), "CppPrimer", 75.0, 20, 20, "Unknown Author [for now]");
+	Book newProd5(GenerateProdID(), "Elements of Computing Systems", 64.0, 30, 30, "Unknown Author [for now]");
+	Product newProd6(GenerateProdID(), "iPhone XR", Product::Types::TECH, 1250.50, 100);
 	
 	prodVector.push_back(newProd1);
 	prodVector.push_back(newProd2);
@@ -178,4 +175,20 @@ bool ECommerce::verifyCustID(int custID) {
 	}
 	return verified;
 
+} 
+
+Product ECommerce::getProd(int prodID) {
+	for (Product i : prodVector) {
+		if (i.prodID == prodID) {
+			return i;
+		}
+	}
+} 
+
+Customer ECommerce::getCust(int custID) {
+	for (Customer i : custVector) {
+		if (i.custID == custID) {
+			return i;
+		}
+	}
 }
