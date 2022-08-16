@@ -2,12 +2,11 @@
 #include <string>
 #include "ECommerce.h"
 
-// To open the project correctly, open the SLN file
-
 int main()
 {   
     // Make an ECommerce Object
     ECommerce eCommerce;
+    eCommerce.IntializeProds();
 
     while (true) { // while we don't get Z^ actually 
         std::cout << "> ";
@@ -15,10 +14,11 @@ int main()
 
         try {
             if (std::cin >> userInput) {
-
                 if (userInput == "NEWCUST") eCommerce.NEWCUST(eCommerce.GenerateCustID()); 
-                if (userInput == "CUSTS") eCommerce.CUSTS();
-  
+                if (userInput == "CUSTS")   eCommerce.CUSTS();
+                if (userInput == "PRODS")   eCommerce.PRODS(); 
+                if (userInput == "BOOKS")   eCommerce.BOOKS();
+                if (userInput == "ORDER")   eCommerce.ORDER(); // implement this later 
             }
         } 
         catch (std::runtime_error err) {

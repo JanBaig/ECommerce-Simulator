@@ -8,6 +8,7 @@ public:
 	int custID;
 	std::string custAddress;
 
+
 	// Constructors
 	Customer() { custName = "None"; custID = 0; custAddress = "None"; }
 
@@ -15,7 +16,8 @@ public:
 			custName(custName), custID(custID), custAddress(custAddress) {};
 
 	// Methods 
-	void DisplayCust();
+
+	
 };
 
 

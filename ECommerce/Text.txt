@@ -1,7 +1,12 @@
 
 TASKS:
 - (DONE) How to read the entire line of input without reading the other 'std::cout's ?
-- Work on the Customer class
+- (DONE) Work on the Customer class
+- (DONE) Work on products class 
+- (DONE) BOOKS Action
+- (CURRENTLY) ORDER Action
+	- Customer Class -> Ordered ArrayList 
+- Orders Action (Displays cust's orders)
 
 
 EXPLANATIONS:
