@@ -5,6 +5,10 @@
 class Product
 { 
 public:
+	
+	// Default Constructor
+	Product() = default;
+
 	// Instance Variables
 	int prodID;
 	std::string name;

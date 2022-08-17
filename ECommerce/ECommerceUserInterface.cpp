@@ -6,7 +6,6 @@ int main()
 {   
     // Make an ECommerce Object
     ECommerce eCommerce;
-    eCommerce.IntializeProds();
 
     while (true) { // while we don't get Z^ actually 
         std::cout << "> ";
@@ -25,7 +24,5 @@ int main()
             std::cout << "ERROR: " <<  err.what() << std::endl; 
         }
     }
-    
-    return 0;
 }
 
