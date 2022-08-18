@@ -7,6 +7,8 @@
 
 // Operator Overrides
 
+int sizeProdArray = 7;
+
 std::ostream& operator<<(std::ostream& os, const Customer& cust) {
 	os << cust.custName << " " << cust.custID << " " << cust.custAddress << std::endl;
 	return os;
@@ -54,8 +56,8 @@ void ECommerce::NEWCUST(int inputCustID) {
 } 
 
 void ECommerce::PRODS() {
-	for (int i = 0; i < sizeof(prodArray) / sizeof(Product); i++) {
-		std::cout << prodArray[i] << std::endl;
+	for (int i = 0; i < sizeProdArray; i++) {
+		prodArray[i]->Print(std::cout);
 	} 
 } 
 
@@ -94,9 +96,9 @@ void ECommerce::ORDER() {
 }
 
 void ECommerce::BOOKS() {
-	for (int i = 0; i < sizeof(prodArray) / sizeof(Product); i++) {
-		if (prodArray[i].type == Product::Types::BOOKS) {
-			std::cout << prodArray[i] << std::flush;
+	for (int i = 0; i < sizeProdArray; i++) {
+		if (prodArray[i]->type == Product::Types::BOOKS) {
+			prodArray[i]->Print(std::cout);
 		}
 	}
 }
@@ -127,8 +129,8 @@ int ECommerce::GenerateProdID() {
 
 bool ECommerce::verifyProdID(int prodID) {
 	bool verified = false;
-	for (int i = 0; i < sizeof(prodArray) / sizeof(Product); i++) {
-		if (prodArray[i].prodID == prodID) {
+	for (int i = 0; i < sizeProdArray; i++) {
+		if (prodArray[i]->prodID == prodID) {
 			verified = true;
 		}
 	} 
@@ -146,10 +148,11 @@ bool ECommerce::verifyCustID(int custID) {
 
 } 
 
+// Double check pointer dereference here
 Product ECommerce::getProd(int prodID) {
-	for (int i = 0; i < sizeof(prodArray) / sizeof(Product); i++) {
-		if (prodArray[i].prodID == prodID) {
-			return prodArray[i];
+	for (int i = 0; i < sizeProdArray; i++) {
+		if (prodArray[i]->prodID == prodID) {
+			return *prodArray[i];
 		}
 	}
 } 

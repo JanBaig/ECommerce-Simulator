@@ -12,9 +12,9 @@ EXPLANATIONS:
 - Need to igore the '\n' in cin after hitting enter after 'NEWCUST'. getline() terminates with a '\n'
   cin >> reads the newline char but does not include it inside the var. getline() on the other hand, does not include it but if found already in stream, terminates 
 - Putting a base class and a derived class into a vector of type <base> does not allow for 
-  Polymorphism. Instead, the type of the vector should be <base*>
+  Polymorphism. Instead, the type of the vector should be <base*> 
+- Check disc account for information on assigning things to a pointer (Using the new keyword)  
 
-- CUSTS
-- NEWCUST
-- PRODS
-- ORDER
+
+IMPROVEMENTS:
+- Optimize arrays using smart pointers (Make dummy programs first and test those - otherwise errors will explode)

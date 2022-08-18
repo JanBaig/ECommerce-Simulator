@@ -29,3 +29,7 @@ bool Product::verifyOptions(std::string prodOptions) {
 	// Subclasses will override this
 	return true;
 }
+
+void Product::randomFunc() {
+	std::cout << "This is a product." << std::endl;
+}

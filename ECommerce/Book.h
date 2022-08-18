@@ -16,5 +16,6 @@ public:
 	// Valid Options
 	bool VerifyOptions(std::string prodOptions);
 	std::ostream& Print(std::ostream& os) override; 
+	void randomFunc() override;
 };
 

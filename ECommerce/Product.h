@@ -24,5 +24,6 @@ public:
 	// Methods
 	virtual bool verifyOptions(std::string prodOptions);
 	virtual std::ostream& Print(std::ostream& os);
+	virtual void randomFunc();
 };
 

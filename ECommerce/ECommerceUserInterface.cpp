@@ -15,7 +15,7 @@ int main()
             if (std::cin >> userInput) {
                 if (userInput == "NEWCUST") eCommerce.NEWCUST(eCommerce.GenerateCustID()); 
                 if (userInput == "CUSTS")   eCommerce.CUSTS();
-                if (userInput == "PRODS")   eCommerce.PRODS(); 
+                if (userInput == "PRODS")   eCommerce.PRODS(); // Currently
                 if (userInput == "BOOKS")   eCommerce.BOOKS();
                 if (userInput == "ORDER")   eCommerce.ORDER(); 
             }

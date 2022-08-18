@@ -11,24 +11,20 @@ class ECommerce
 public: 
 	// Class Variables
 	std::vector<Customer> custVector;
-	Product prodArray[6];
+	Product* prodArray[7];
 
 	// Default Constructor
 	ECommerce() {
-		Product newProd1(GenerateProdID(), "summer dress", Product::Types::CLOTHES, 20.5, 100);
-		Product newProd2(GenerateProdID(), "Nike", Product::Types::SHOES, 30.0, 100);
-		Product newProd3(GenerateProdID(), "Lenovo", Product::Types::TECH, 1250.50, 100);
-		Book newProd4(GenerateProdID(), "CppPrimer", 75.0, 20, 20, "Unknown Author [for now]");
-		Book newProd5(GenerateProdID(), "Elements of Computing Systems", 64.0, 30, 30, "Unknown Author [for now]");
-		Product newProd6(GenerateProdID(), "iPhone XR", Product::Types::TECH, 1250.50, 100);
 
-		// Create an Array 
-		prodArray[0] = newProd1;
-		prodArray[1] = newProd2;
-		prodArray[2] = newProd3;
-		prodArray[3] = newProd4;
-		prodArray[4] = newProd5;
-		prodArray[5] = newProd6;
+		// Create an Array - prodArray[1] = &newProd2;
+		prodArray[0] = new Product(GenerateProdID(), "summer dress", Product::Types::CLOTHES, 20.5, 100);
+		prodArray[1] = new Product(GenerateProdID(), "Nike", Product::Types::SHOES, 30.0, 100);
+		prodArray[2] = new Book(GenerateProdID(), "CppPrimer", 75.0, 20, 20, "Unknown Author [for now]");
+		prodArray[3] = new Product(GenerateProdID(), "Lenovo", Product::Types::TECH, 1250.50, 100);
+		prodArray[4] = new Product(GenerateProdID(), "iPhone XR", Product::Types::TECH, 1250.50, 100);
+		prodArray[5] = new Book(GenerateProdID(), "Elements of Computing Systems", 64.0, 30, 30, "Unknown Author [for now]");
+		prodArray[6] = new Book(GenerateProdID(), "Big Java", 78.0, 10, 10, "Unkown Author [for now]");
+			
 	}
 
 	// Action Methods
