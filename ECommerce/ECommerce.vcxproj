@@ -132,12 +132,14 @@
     <ClCompile Include="ECommerceUserInterface.cpp" />
     <ClCompile Include="ECommerce.cpp" />
     <ClCompile Include="Product.cpp" />
+    <ClCompile Include="ProductOrder.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Book.h" />
     <ClInclude Include="Customer.h" />
     <ClInclude Include="ECommerce.h" />
     <ClInclude Include="Product.h" />
+    <ClInclude Include="ProductOrder.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Tasks.txt" />

@@ -19,6 +19,14 @@ std::ostream& operator<<(std::ostream& os, Product& prod) {
 	return prod.Print(os);  
 }
 
+std::ostream& operator<<(std::ostream& os, ProductOrder& order) {
+	os << "Order ID: " << order.orderID << " | ";
+	os << "Prod ID: " << order.prod->prodID + " | ";
+	os << "Cust ID: " << order.cust.custID + " | ";
+	os << "Prod Options: " << order.options << std::endl;
+	return os;
+}
+
 // Actions
 
 void ECommerce::CUSTS() {
@@ -64,6 +72,7 @@ void ECommerce::PRODS() {
 void ECommerce::ORDER() {
 	std::string inputProdID;
 	std::string inputCustID;
+	std::string options = "None";
 
 	std::cout << "Product ID: ";
 	std::cin.ignore();
@@ -73,26 +82,22 @@ void ECommerce::ORDER() {
 	std::getline(std::cin, inputCustID); 
 
 	// Error Handling
-	if (verifyProdID(std::stoi(inputProdID))) {
-		Product orderedProd = getProd(stoi(inputProdID));
-		std::cout << orderedProd << std::endl;
-	}
-	else {
-		throw std::runtime_error("ERROR: Incorrect Product ID.");
-	} 
+	if (!verifyProdID(std::stoi(inputProdID))) throw std::runtime_error("ERROR: Incorrect Product ID.");
 
-	if (verifyCustID(std::stoi(inputCustID))) {
-		Customer orderedCust = getCust(stoi(inputCustID));
-		std::cout << orderedCust << std::endl;
-	}
-	else {
-		throw std::runtime_error("ERROR: Incorrect Customer ID.");
+	if (!verifyCustID(std::stoi(inputCustID))) throw std::runtime_error("ERROR: Incorrect Customer ID.");
+	
+	Product* orderedProd = getProd(stoi(inputProdID));
+	Customer orderedCust = getCust(stoi(inputCustID));
+	
+	if (orderedProd->type == Product::Types::BOOKS) {
+		std::cout << "Choose Book Options: 'H' for [Hardcover], 'P' for [Paperback]: " << std::flush;
+		std::cin >> options;
 	}
 
-	// Convert the prodID to an int later on
-
-	// Add to the 'ordered' arraylist for that cust
-	// create a NEW productOrder object and add that to the custs arraylist
+	ProductOrder newOrder = ProductOrder(GenerateOrderID(), orderedProd, orderedCust, options);
+	
+	std::cout << "Product Ordered." << std::endl;
+	//std::cout << newOrder << std::flush;
 }
 
 void ECommerce::BOOKS() {
@@ -105,10 +110,23 @@ void ECommerce::BOOKS() {
 
 // Other Methods
 
-int ECommerce::GenerateCustID()
-
-{	// Use Static Locals Variables 
+int ECommerce::GenerateCustID() {	
+	// Use Static Locals Variables 
 	static int ID = 49;
+	ID += 1;
+	return ID;
+}
+
+int ECommerce::GenerateProdID() {
+	// Use Static Local Variables 
+	static int ID = 699;
+	ID += 1;
+	return ID;
+}
+
+int ECommerce::GenerateOrderID() {
+	// Use Static Local Variables
+	static int ID = 999;
 	ID += 1;
 	return ID;
 }
@@ -117,13 +135,6 @@ void ECommerce::AddCustVector(Customer newCust) {
 	// how do we know that the cust vector belongs to the spefic element of ecommerce?
 	custVector.push_back(newCust);
 }  
-
-int ECommerce::GenerateProdID() {
-	// Use Static Local Variables 
-	static int ID = 699;
-	ID += 1;
-	return ID;
-}
 
 // Helper Functions
 
@@ -148,11 +159,10 @@ bool ECommerce::verifyCustID(int custID) {
 
 } 
 
-// Double check pointer dereference here
-Product ECommerce::getProd(int prodID) {
+Product* ECommerce::getProd(int prodID) {
 	for (int i = 0; i < sizeProdArray; i++) {
 		if (prodArray[i]->prodID == prodID) {
-			return *prodArray[i];
+			return prodArray[i];
 		}
 	}
 } 

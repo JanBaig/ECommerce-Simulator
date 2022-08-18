@@ -4,6 +4,7 @@
 #include "Customer.h"
 #include "Product.h"
 #include "Book.h"
+#include "ProductOrder.h"
 #pragma once
 
 class ECommerce
@@ -11,7 +12,8 @@ class ECommerce
 public: 
 	// Class Variables
 	std::vector<Customer> custVector;
-	Product* prodArray[7];
+	std::vector<ProductOrder> prodOrder;
+	Product* prodArray[7]; 
 
 	// Default Constructor
 	ECommerce() {
@@ -38,13 +40,12 @@ public:
 	void AddCustVector(Customer newCust);
 	int GenerateCustID();
 	int GenerateProdID();
-	void IntializeProds();
+	int GenerateOrderID();
 
 	// Helper Methods
 	bool verifyProdID(int prodID);
 	bool verifyCustID(int custID);
-	Product getProd(int prodID);
+	Product* getProd(int prodID);
 	Customer getCust(int custID);
-	
 };
 
