@@ -176,7 +176,12 @@ void ECommerce::AddOrderVector(ProductOrder newOrder) {
 
 void ECommerce::AddShipVector(ProductOrder prodOrder) {
 	// Remove from order vector 
-	//orderVector.erase(std::remove(orderVector.begin(), orderVector.end(), prodOrder), orderVector.end());
+
+	for (int i = 0; i < orderVector.size(); i++) {
+		if (orderVector[i].orderID == prodOrder.orderID) {
+			orderVector.erase(orderVector.begin() + i);
+		}
+	}
 
 	// Add to shipped 
 	shipVector.push_back(prodOrder);
