@@ -15,9 +15,12 @@ int main()
             if (std::cin >> userInput) {
                 if (userInput == "NEWCUST") eCommerce.NEWCUST(eCommerce.GenerateCustID()); 
                 if (userInput == "CUSTS")   eCommerce.CUSTS();
-                if (userInput == "PRODS")   eCommerce.PRODS(); // Currently
+                if (userInput == "PRODS")   eCommerce.PRODS();
                 if (userInput == "BOOKS")   eCommerce.BOOKS();
                 if (userInput == "ORDER")   eCommerce.ORDER(); 
+                if (userInput == "ORDERS")  eCommerce.ORDERS(); 
+                if (userInput == "SHIP")    eCommerce.SHIP();
+                if (userInput == "SHIPPED") eCommerce.SHIPPED();
             }
         } 
         catch (std::runtime_error err) {

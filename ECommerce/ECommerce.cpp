@@ -5,9 +5,11 @@
 #include "Product.h"
 #include "Book.h" 
 
-// Operator Overrides
+// Globals (For now)
 
 int sizeProdArray = 7;
+
+// Operator Overrides
 
 std::ostream& operator<<(std::ostream& os, const Customer& cust) {
 	os << cust.custName << " " << cust.custID << " " << cust.custAddress << std::endl;
@@ -19,10 +21,10 @@ std::ostream& operator<<(std::ostream& os, Product& prod) {
 	return prod.Print(os);  
 }
 
-std::ostream& operator<<(std::ostream& os, ProductOrder& order) {
+std::ostream& operator<<(std::ostream& os, const ProductOrder& order) {
 	os << "Order ID: " << order.orderID << " | ";
-	os << "Prod ID: " << order.prod->prodID + " | ";
-	os << "Cust ID: " << order.cust.custID + " | ";
+	os << "Prod Name: " << order.prod->name << " | ";
+	os << "Cust Name: " << order.cust.custName << " | ";
 	os << "Prod Options: " << order.options << std::endl;
 	return os;
 }
@@ -93,11 +95,11 @@ void ECommerce::ORDER() {
 		std::cout << "Choose Book Options: 'H' for [Hardcover], 'P' for [Paperback]: " << std::flush;
 		std::cin >> options;
 	}
-
-	ProductOrder newOrder = ProductOrder(GenerateOrderID(), orderedProd, orderedCust, options);
 	
+	ProductOrder newOrder = ProductOrder(GenerateOrderID(), orderedProd, orderedCust, options);
+	AddOrderVector(newOrder);
 	std::cout << "Product Ordered." << std::endl;
-	//std::cout << newOrder << std::flush;
+	std::cout << "Product ID : " << newOrder.orderID << std::endl;
 }
 
 void ECommerce::BOOKS() {
@@ -105,6 +107,36 @@ void ECommerce::BOOKS() {
 		if (prodArray[i]->type == Product::Types::BOOKS) {
 			prodArray[i]->Print(std::cout);
 		}
+	}
+}
+
+void ECommerce::ORDERS() {
+	for (ProductOrder i : orderVector) {
+		std::cout << i << std::flush;
+	}
+}
+ 
+void ECommerce::SHIP() {
+	ProductOrder prodOrder;
+	std::string orderID;
+
+	std::cin.ignore();
+	std::cout << "Enter the order number: ";
+	std::cin >> orderID; 
+
+	// Error Handling
+	if (!verifyOrderID(std::stoi(orderID))) throw std::runtime_error("ERROR: Incorrect Order ID.");
+	
+	ProductOrder ordered = getOrder(stoi(orderID));
+
+	AddShipVector(ordered); 
+
+	std::cout << "Success last." << std::endl;
+}  
+
+void ECommerce::SHIPPED() {
+	for (ProductOrder i : shipVector) {
+		std::cout << i << std::flush;
 	}
 }
 
@@ -136,6 +168,21 @@ void ECommerce::AddCustVector(Customer newCust) {
 	custVector.push_back(newCust);
 }  
 
+// Decrement the stock couts as well
+void ECommerce::AddOrderVector(ProductOrder newOrder) {
+	orderVector.push_back(newOrder);
+}
+
+
+void ECommerce::AddShipVector(ProductOrder prodOrder) {
+	// Remove from order vector 
+	//orderVector.erase(std::remove(orderVector.begin(), orderVector.end(), prodOrder), orderVector.end());
+
+	// Add to shipped 
+	shipVector.push_back(prodOrder);
+}
+
+
 // Helper Functions
 
 bool ECommerce::verifyProdID(int prodID) {
@@ -159,6 +206,18 @@ bool ECommerce::verifyCustID(int custID) {
 
 } 
 
+bool ECommerce::verifyOrderID(int orderID) {
+	bool verified = false;
+	for (ProductOrder i : orderVector) {
+		if (i.orderID == orderID) { 
+			verified = true;
+		}
+	} 
+
+	return verified;
+}
+
+
 Product* ECommerce::getProd(int prodID) {
 	for (int i = 0; i < sizeProdArray; i++) {
 		if (prodArray[i]->prodID == prodID) {
@@ -175,3 +234,10 @@ Customer ECommerce::getCust(int custID) {
 	}
 }
 
+ProductOrder ECommerce::getOrder(int orderID) {
+	for (ProductOrder i : orderVector) {
+		if (i.orderID == orderID) {
+			return i;
+		}
+	}
+}

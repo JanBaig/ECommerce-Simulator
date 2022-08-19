@@ -15,6 +15,6 @@ public:
 	ProductOrder() = default;
 
 	ProductOrder(int orderID, Product* prod, Customer cust, std::string options) :
-		orderID(orderID), prod(prod), cust(cust), options(options) {};
+		orderID(orderID), prod(prod), cust(cust), options(options) {}; 
 };
 
