@@ -140,6 +140,44 @@ void ECommerce::SHIPPED() {
 	}
 }
 
+void ECommerce::CUSTORDERS() {
+	// Display orders specific to the customer
+
+	std::string inputCustID;
+	
+	std::cin.ignore();
+	std::cout << "Customer ID: " << std::flush;
+	std::cin >> inputCustID;
+
+	if (!verifyCustID(std::stoi(inputCustID))) throw std::runtime_error("ERROR: Incorrect Customer ID."); 
+
+	for (ProductOrder i : orderVector) {
+		if (i.cust.custID == stoi(inputCustID)) {
+			std::cout << i << std::endl;
+		}
+	}
+
+}
+
+void ECommerce::CANCEL() {
+	// Remove from order vector 
+	std::string inputOrderID;
+
+	std::cin.ignore();
+	std::cout << "Order ID: ";
+	std::cin >> inputOrderID;
+
+	if (!verifyOrderID(stoi(inputOrderID))) throw std::runtime_error("ERROR: Incorrect Product ID.");
+
+	for (int i = 0; i < orderVector.size(); i++) {
+		if (orderVector[i].orderID == stoi(inputOrderID)) {
+			orderVector.erase(orderVector.begin() + i);
+		}
+	} 
+
+	std::cout << "Order Cancelled." << std::endl;
+}
+
 // Other Methods
 
 int ECommerce::GenerateCustID() {	
@@ -168,11 +206,9 @@ void ECommerce::AddCustVector(Customer newCust) {
 	custVector.push_back(newCust);
 }  
 
-// Decrement the stock couts as well
 void ECommerce::AddOrderVector(ProductOrder newOrder) {
 	orderVector.push_back(newOrder);
 }
-
 
 void ECommerce::AddShipVector(ProductOrder prodOrder) {
 	// Remove from order vector 
@@ -186,7 +222,6 @@ void ECommerce::AddShipVector(ProductOrder prodOrder) {
 	// Add to shipped 
 	shipVector.push_back(prodOrder);
 }
-
 
 // Helper Functions
 

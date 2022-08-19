@@ -38,6 +38,8 @@ public:
 	void ORDERS();
 	void SHIP();
 	void SHIPPED();
+	void CUSTORDERS();
+	void CANCEL();
 
 	// Other Methods
 	void AddCustVector(Customer newCust);

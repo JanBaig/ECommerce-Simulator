@@ -1,7 +1,7 @@
 
 TASKS:
-- (CURRENTLY) Basic: actions CUSTS, BOOKS, ORDERS, SHIPPED
-- Intermediate: actions ORDER, SHIP, CUSTORDERS, NEWCUST, CANCEL
+- (DONE) Basic: actions CUSTS, BOOKS, ORDERS, SHIPPED
+- (CURRENTLY) Intermediate: actions ORDER, SHIP, [CUSTORDERS], NEWCUST, [CANCEL]
 - Advanced: Action ORDERBOOK and class Book functionality
 - Advanced: action ORDERSHOES and class Shoes
 - 3 SORT actions (see code) 
@@ -19,3 +19,4 @@ EXPLANATIONS:
 
 IMPROVEMENTS:
 - Optimize arrays using smart pointers (Make dummy programs first and test those - otherwise errors will explode)
+- Decrement the stock count as well
