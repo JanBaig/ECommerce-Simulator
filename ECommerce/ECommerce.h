@@ -30,6 +30,7 @@ public:
 	}
 
 	// Action Methods
+	void HELP();
 	void NEWCUST(int inputCustID); 
 	void ORDER();
 	void CUSTS();

@@ -17,7 +17,3 @@ bool Book::VerifyOptions(std::string prodOptions) {
 	// Something 
 	return true;
 }
-
-void Book::randomFunc() {
-	std::cout << "This is a book." << std::endl;
-}

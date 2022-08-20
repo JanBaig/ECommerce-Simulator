@@ -128,11 +128,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Book.cpp" />
-    <ClCompile Include="Customer.cpp" />
     <ClCompile Include="ECommerceUserInterface.cpp" />
     <ClCompile Include="ECommerce.cpp" />
     <ClCompile Include="Product.cpp" />
-    <ClCompile Include="ProductOrder.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Book.h" />

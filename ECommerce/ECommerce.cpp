@@ -6,8 +6,6 @@
 #include "Book.h" 
 #include <algorithm>
 
-// Globals (For now)
-
 int sizeProdArray = 7;
 
 bool compareName(Product* a, Product* b) {
@@ -25,7 +23,9 @@ bool compareCust(Customer a, Customer b) {
 // Operator Overrides
 
 std::ostream& operator<<(std::ostream& os, const Customer& cust) {
-	os << cust.custName << " " << cust.custID << " " << cust.custAddress << std::endl;
+	os << "Name: " << cust.custName << " | ";
+	os << "ID: " << cust.custID << " | ";
+	os << "Address: " << cust.custAddress << std::endl;
 	return os;
 }
 
@@ -43,6 +43,12 @@ std::ostream& operator<<(std::ostream& os, const ProductOrder& order) {
 }
 
 // Actions
+
+void ECommerce::HELP() {
+	std::cout << "All the actions you can preform: " << std::endl;
+	std::cout << "-> Customer Actions: " << "CUSTS, NEWCUST, CUSTORDERS, SORTBYCUST" << std::endl;
+	std::cout << "-> Product Actions: " << "PRODS, ORDER, BOOKS, ORDERS, SHIP, SHIPPED, CANCEL, SORTBYNAME, SORTBYPRICE" << std::endl;
+}
 
 void ECommerce::CUSTS() {
 	for (Customer i : custVector) {
@@ -73,7 +79,6 @@ void ECommerce::NEWCUST(int inputCustID) {
 
 	Customer newCust(custName, custID, custAddress);
 
-	// Would this even work?
 	this->AddCustVector(newCust);
 	
 } 
@@ -154,8 +159,6 @@ void ECommerce::SHIPPED() {
 }
 
 void ECommerce::CUSTORDERS() {
-	// Display orders specific to the customer
-
 	std::string inputCustID;
 	
 	std::cin.ignore();
@@ -173,7 +176,6 @@ void ECommerce::CUSTORDERS() {
 }
 
 void ECommerce::CANCEL() {
-	// Remove from order vector 
 	std::string inputOrderID;
 
 	std::cin.ignore();
@@ -192,7 +194,6 @@ void ECommerce::CANCEL() {
 }
 
 void ECommerce::SORTBYNAME() {
-	// Sort the prodVector by name
 	std::sort(prodArray, prodArray + sizeProdArray, compareName);
 
 	for (Product* i : prodArray) {
@@ -209,7 +210,6 @@ void ECommerce::SORTBYPRICE() {
 }
 
 void ECommerce::SORTBYCUST() {
-	// Sort the custs by name
 	std::sort(custVector.begin(), custVector.end(), compareCust);
 
 	for (Customer i : custVector) {
@@ -241,7 +241,6 @@ int ECommerce::GenerateOrderID() {
 }
 
 void ECommerce::AddCustVector(Customer newCust) {
-	// how do we know that the cust vector belongs to the spefic element of ecommerce?
 	custVector.push_back(newCust);
 }  
 
