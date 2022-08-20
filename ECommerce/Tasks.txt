@@ -13,7 +13,7 @@ EXPLANATIONS:
 - Check disc account for information on assigning things to a pointer (Using the new keyword)  
 
 IMPROVEMENTS:
-- Optimize arrays using smart pointers (Make dummy programs first and test those - otherwise errors will explode)
+- Optimize arrays using smart pointers
 - Decrement the stock count as well
 - Each class should have an order method which polymorphically orders items 
 	- If the item is a book, it automatically asks for the options, else it does not
