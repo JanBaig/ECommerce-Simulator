@@ -1,3 +1,3 @@
 # ECommerce
 
-Ecommerce Simulation 
+First project to practice C++ (Learnt a ton!)
