@@ -40,6 +40,9 @@ public:
 	void SHIPPED();
 	void CUSTORDERS();
 	void CANCEL();
+	void SORTBYNAME();
+	void SORTBYPRICE();
+	void SORTBYCUST();
 
 	// Other Methods
 	void AddCustVector(Customer newCust);

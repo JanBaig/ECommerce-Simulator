@@ -23,6 +23,9 @@ int main()
                 if (userInput == "SHIPPED")     eCommerce.SHIPPED();
                 if (userInput == "CUSTORDERS")  eCommerce.CUSTORDERS();
                 if (userInput == "CANCEL")      eCommerce.CANCEL();
+                if (userInput == "SORTBYNAME")  eCommerce.SORTBYNAME();
+                if (userInput == "SORTBYPRICE") eCommerce.SORTBYPRICE();
+                if (userInput == "SORTBYCUST")  eCommerce.SORTBYCUST();
             }
         } 
         catch (std::runtime_error err) {

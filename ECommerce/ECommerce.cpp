@@ -4,10 +4,23 @@
 #include "Customer.h"
 #include "Product.h"
 #include "Book.h" 
+#include <algorithm>
 
 // Globals (For now)
 
 int sizeProdArray = 7;
+
+bool compareName(Product* a, Product* b) {
+	return a->name < b->name;
+}
+
+bool comparePrice(Product* a, Product* b) {
+	return a->price < b->price;
+}
+
+bool compareCust(Customer a, Customer b) {
+	return a.custName < b.custName;
+}
 
 // Operator Overrides
 
@@ -178,6 +191,32 @@ void ECommerce::CANCEL() {
 	std::cout << "Order Cancelled." << std::endl;
 }
 
+void ECommerce::SORTBYNAME() {
+	// Sort the prodVector by name
+	std::sort(prodArray, prodArray + sizeProdArray, compareName);
+
+	for (Product* i : prodArray) {
+		i->Print(std::cout);
+	}
+}
+
+void ECommerce::SORTBYPRICE() {
+	std::sort(prodArray, prodArray + sizeProdArray, comparePrice);
+
+	for (Product* i : prodArray) {
+		i->Print(std::cout);
+	}
+}
+
+void ECommerce::SORTBYCUST() {
+	// Sort the custs by name
+	std::sort(custVector.begin(), custVector.end(), compareCust);
+
+	for (Customer i : custVector) {
+		std::cout << i << std::endl;
+	}
+}
+
 // Other Methods
 
 int ECommerce::GenerateCustID() {	
@@ -256,7 +295,6 @@ bool ECommerce::verifyOrderID(int orderID) {
 
 	return verified;
 }
-
 
 Product* ECommerce::getProd(int prodID) {
 	for (int i = 0; i < sizeProdArray; i++) {
